@@ -10,7 +10,7 @@ from scipy import stats
 class TempManger:
     
     #Atributos
-    df = pandas.read_excel("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\TempFilter.xlsx")
+    df = pandas.read_excel("TempFilter.xlsx")
     
     
 
