@@ -13,11 +13,8 @@ def weather(city):
     time = soup.select('#wob_dts')[0].getText().strip()
     info = soup.select('#wob_dc')[0].getText().strip()
     weather = soup.select('#wob_tm')[0].getText().strip()
-    weather = weather + "°C"
-    print(location)
-    print(time)
-    print(info)
-    print(weather + "°C")
+    weather = weather
+  
     lista = [location, time, info, weather ]
     return lista
 
