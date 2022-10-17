@@ -17,3 +17,4 @@ sklearn == 0.0
 streamlit == 1.13.0
 streamlit_option_menu == 0.3.2
 tensorflow == 2.10.0
+openpyxl == 3.0.10
