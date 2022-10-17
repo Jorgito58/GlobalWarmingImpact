@@ -119,7 +119,7 @@ if selected == "Home":
         st.write(lista[0])
         #st.write(lista[1]+"h")
         st.write(lista[2]) 
-        celsius =  (int(lista[3]) - 32) / 1.8
+        celsius =  (float(lista[3]) - 32) / 1.8
         st.write(celsius, "°C")
        
 
