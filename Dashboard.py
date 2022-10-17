@@ -1,4 +1,8 @@
 import streamlit as st
+import sys
+
+sys.path.insert(1, "D:\\Software Development\\PythonLearning\\Curso-Python\\7. Python_AI\\Data_IA_FullCourse\\deeplearning\\Lib\\site-packages\\streamlit_option_menu")
+
 from streamlit_option_menu import option_menu
 import pandas as pd
 import altair as alt
