@@ -119,7 +119,9 @@ if selected == "Home":
         st.write(lista[0])
         #st.write(lista[1]+"h")
         st.write(lista[2]) 
-        st.write(lista[3])
+        celsius =  (int(lista[3]) - 32) / 1.8
+        st.write(celsius, "°C")
+       
 
 
     # #SideBar
