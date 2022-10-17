@@ -21,7 +21,6 @@ import time
 import os
 from gtts import gTTS
 import requests, json
-import pyaudio
 from playsound import playsound
 from datetime import datetime as d
 from weather import weather
