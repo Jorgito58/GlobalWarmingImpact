@@ -13,8 +13,8 @@ class DataAnalytics:
 
     
     
-    df = pd.read_excel("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\TempFilter.xlsx")
-    df_precip = pd.read_excel("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\RainfallMean.xlsx")
+    df = pd.read_excel("TempFilter.xlsx")
+    df_precip = pd.read_excel("RainfallMean.xlsx")
   
 
     list_keys = list(df_precip.keys())
