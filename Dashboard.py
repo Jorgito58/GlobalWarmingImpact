@@ -9,8 +9,8 @@ from Manager import DataAnalytics as da
 from Graphics import DataVizualisation as DT
 
 #Virtual Assitent Imports
-from tabnanny import filename_only
-from typing import final
+
+
 import speech_recognition as sr
 from time import ctime
 import time
@@ -19,10 +19,7 @@ from gtts import gTTS
 import requests, json
 import pyaudio
 from playsound import playsound
-from datetime import datetime as dt
-
-from DNA_Generator import Ramdon_Sequence
-
+from datetime import datetime as d
 from weather import weather
 
 #<iframe id='ep-chart-be6cd260-f423-46da-bd65-045189f7f87a' src='https://www.epdata.es/embed/be6cd260-f423-46da-bd65-045189f7f87a/450' style='width: 100%; min-height: 450px; overflow: hidden;' frameborder='0' scrolling='no' height='450'></iframe>
@@ -40,7 +37,7 @@ hide_menu_style = """
         footer {visibility: hidden;}
         </style>
     """
-
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 #Users
 users = {'Root': 'qwerty',
         'Wise_George': 'Jorgito16*',
@@ -53,8 +50,7 @@ Anual_Max_df = da.FullAnnualAvgAñoallProvMax()
 Anual_Min_df = da.FullAnnualAvgAñoallProvMin()
 RainFall_df = da.makePrecipitationDf()
 
-ramdon_sequance = Ramdon_Sequence()
-sequence = "Empty"
+
 
 #CleaningData
 province_list = []
@@ -69,46 +65,6 @@ for element in province_series:
 
 
 
-# Group multiple widgets:
-# placeholder  = st.empty()
-
-# def Login_Windows():
-#     tuple = ()
-
-#     placeholder.write("""
-    
-#     """)
-    
-#     clomun1,column2,column3 = placeholder.columns(3)
-   
-#     with column2.form('Login Windows'):
-#         username = st.text_input('Username')
-#         password = st.text_input('Password')
-#         st.form_submit_button('Login')
-#         st.info("Enter Correct Username and Password")
-#         tuple = (username, password)
-#         return tuple
-
-# user_tuple = Login_Windows()
-
-# def Login():
-#     bool = False
-#     for keys, values in users.items():
-#         if keys == user_tuple[0]:
-#             if values == user_tuple[1]:
-#                 bool = True
-#     return bool 
-
-# if Login() == True:
-    
-#     placeholder.empty()
-#     # success = st.success("Login Successfully")
-#     # time.sleep(1)
-#     # success.empty()
-
-#     if user_tuple[0] != "Root":
-#         st.markdown(hide_menu_style, unsafe_allow_hdal=True)
-
 selected = option_menu(
     menu_title = "",
     options = ["Home", "Download", "Contact"],
@@ -118,7 +74,6 @@ selected = option_menu(
     orientation = "horizontal",
 )
 
-#st.title(f"You Have Selected {selected} Window")
 
 
 image = Image.open("Earth2.jpg")
@@ -162,7 +117,7 @@ if selected == "Home":
         st.header("⛅Real Time Weather Tracker")
         lista = weather("Cuba" +" weather")
         st.write(lista[0])
-        st.write(lista[1]+"h")
+        #st.write(lista[1]+"h")
         st.write(lista[2]) 
         st.write(lista[3])
 
@@ -230,9 +185,9 @@ if selected == "Home":
     
     if selected == "Statics":
         ## 1. Display DataFrame
-        st.header("📊DataSets Main Statics")
+        st.header("📊DataSets Main Statistics")
         describe = DT.Display_Statics()
-        if st.checkbox('Show Main Statics'):
+        if st.checkbox('Show Main Statistics'):
             colum1, colum2 = st.columns(2)
             with colum1:
                 st.subheader('Main Statistics Temperature')
@@ -244,6 +199,7 @@ if selected == "Home":
 
         col1,col2,col3 = st.columns([3,6,3])
         with col2:
+            st.header("")
             st.header("Temperature Data Visualization")
             st.image("temp.jpg")
 
@@ -261,7 +217,7 @@ if selected == "Home":
 
         ## 2. Display Graphics
 
-        
+        st.header("")
         years_to_filter = st.slider('years', 2006, 2020, 2007)  # min: 2006, max: 2020, default: 2007
         max_df = da.FullAnnualAvgProvsegunAñoMax(years_to_filter)
         min_df = da.FullAnnualAvgProvsegunAñoMin(years_to_filter)
@@ -274,16 +230,19 @@ if selected == "Home":
         #years_to_filter_rain = st.slider('years', 2006, 2020, 2007)  # min: 2006, max: 2020, default: 2007
         #months = st.slider('months',"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")   
 
+        st.header("")
         prov_to_filter = st.select_slider('Choose Province', province_list)
         Anual_Per_Prov_Max= da.FullAnnualAvgAñosegunProvMax(prov_to_filter)
         Anual_Per_Prov_Min= da.FullAnnualAvgAñosegunProvMin(prov_to_filter)
         st.bar_chart(data=Anual_Per_Prov_Max,x = "Años", y="Maxima Media" )
         
+        st.header("")
         col1, col2, col3 = st.columns([3,12,3])
         with col2:
             st.subheader("Cross Relationship")
             st.pyplot(DT.Pair_Plot())
 
+        st.header("")
         col1,col2,col3 = st.columns([3,5,3])
 
         with col2:
@@ -294,10 +253,14 @@ if selected == "Home":
         st.bar_chart(data = RainFall_df, y = "Mean", x = "Año")
 
     if selected == "Prediccions":
-
-        st.header("Predictions using advanced Machine Learning Techniques")
-        st.image("ia2.jpg")
         
+        st.header("")
+        st.header("")
+        col1,col2,col3 = st.columns([1,18,1])
+        with col2:
+            st.header("Predictions Using Advanced Machine Learning Techniques")
+        st.image("ia2.jpg")
+        st.header("")
 
         Year_list_before = [x for x in range(1900, 2000, 10)]
         Year_list_after = [x for x in range(2000, 2100, 10)]
@@ -306,26 +269,29 @@ if selected == "Home":
         df_before = pd.DataFrame({"Años": Year_list_before, "Temperatura Media": before})
         df_after = pd.DataFrame({"Años": Year_list_after, "Temperatura Media": after})
         
-        st.header("Predicciones de Temperaturas 2030-2070")
+        st.header("Temperature Predictions 2030-2070")
         temp =  [31.194957733154297, 31.246030807495117, 31.297096252441406, 31.348163604736328, 31.39923095703125]
         year = [2030, 2040, 2050, 2060, 2070]
         df_pred = pd.DataFrame({"Años": year, "Temperatura Media": temp})
 
         st.bar_chart(data = df_pred, x = "Años", y = "Temperatura Media" )
 
-        st.header("Incremento de las Temperaturas Durante el siglo XX y XXI")
+        st.header("")
+        st.header("Increasing Temperatures during the 20th and 21st century")
         
         colum1, colum2, colum3 = st.columns([3,8,3])
         with colum2:
-            st.write("## Promedio de Temperaturas 1900-2000")
+            st.write("## Average Temperatures 1900-2000")
         st.bar_chart(x = "Años", y = "Temperatura Media", data = df_before)
         
         colum1, colum2, colum3 = st.columns([3,8,3])
         with colum2:
-            st.write("## Promedio de Temperaturas 2000-2100")
+            st.write("## Average Temperatures 2000-2100")
         st.bar_chart(x = "Años", y = "Temperatura Media", data = df_after)
 
-        st.subheader("***Existe una variacion de 2.8 Grados  Celsius desde 1900 hasta 2090***")
+        col1,col2,col3 = st.columns([2,10,2])
+        with col2:
+            st.subheader("***🌡️There is a variation of 2.8 Degrees Celsius from 1900 to 2090***")
             
 if selected == "Crop Software":
     st.header("Soon")
