@@ -8,7 +8,7 @@ from Manager import DataAnalytics as da
 def Temperature_Prediction():
         
     #Importando Datos
-    temperature_df = pd.read_excel("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\TempFilter.xlsx")
+    temperature_df = pd.read_excel("TempFilter.xlsx")
 
     #Variables a entrenar
     x_train = temperature_df["Año"]
@@ -29,7 +29,7 @@ def Temperature_Prediction():
 
     #Entrenando el Modelo
     epochs_hist = model.fit(x_train, y_train, epochs = 15)
-    model.save("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\Save Models\\Temperature Model")
+    model.save("\\Save Models\\Temperature Model")
     plt.plot(epochs_hist.history["loss"])
     plt.title('Progreso de Perdida durante Entrenamiento del Modelo')
     plt.xlabel('Epochs')
@@ -80,7 +80,7 @@ def Temperature_Prediction():
 def RainFall_Prediction():
         
     #Importando Datos
-    precipitacion_df = pd.read_excel("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\RainfallMean.xlsx")
+    precipitacion_df = pd.read_excel("RainfallMean.xlsx")
     df = da.makePrecipitationDf() 
     print(df)
     #Variables a entrenar
