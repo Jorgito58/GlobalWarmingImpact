@@ -1,0 +1,425 @@
+import streamlit as st
+from streamlit_option_menu import option_menu
+import pandas as pd
+import altair as alt
+import time
+from Virtual_Assit import VirtualAssitent as va
+from PIL import Image
+from Manager import DataAnalytics as da
+from Graphics import DataVizualisation as DT
+
+#Virtual Assitent Imports
+from tabnanny import filename_only
+from typing import final
+import speech_recognition as sr
+from time import ctime
+import time
+import os
+from gtts import gTTS
+import requests, json
+import pyaudio
+from playsound import playsound
+from datetime import datetime as dt
+
+from DNA_Generator import Ramdon_Sequence
+
+from weather import weather
+
+#<iframe id='ep-chart-be6cd260-f423-46da-bd65-045189f7f87a' src='https://www.epdata.es/embed/be6cd260-f423-46da-bd65-045189f7f87a/450' style='width: 100%; min-height: 450px; overflow: hidden;' frameborder='0' scrolling='no' height='450'></iframe>
+#<iframe id='ep-chart-73a70e5f-022c-4db8-b5dc-e6fbfb2d031e' src='https://www.epdata.es/embed/73a70e5f-022c-4db8-b5dc-e6fbfb2d031e/450' style='width: 100%; min-height: 450px; overflow: hidden;' frameborder='0' scrolling='no' height='450'></iframe>
+#<iframe id='ep-chart-df13da5a-5e7b-4c1d-aa57-5d10bff4b1f4' src='https://www.epdata.es/embed/df13da5a-5e7b-4c1d-aa57-5d10bff4b1f4/450' style='width: 100%; min-height: 450px; overflow: hidden;' frameborder='0' scrolling='no' height='450'></iframe>
+
+
+#Streamlit Config Functions
+image = Image.open("Icon.jpg")
+st.set_page_config(page_title='Dashboard', page_icon = image, layout='wide')
+
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        </style>
+    """
+
+#Users
+users = {'Root': 'qwerty',
+        'Wise_George': 'Jorgito16*',
+        'Frankej': 'Frank07*'}
+
+# Data Set
+Temp_df = da.df
+province_series = Temp_df["Provincia"]
+Anual_Max_df = da.FullAnnualAvgAñoallProvMax()
+Anual_Min_df = da.FullAnnualAvgAñoallProvMin()
+RainFall_df = da.makePrecipitationDf()
+
+ramdon_sequance = Ramdon_Sequence()
+sequence = "Empty"
+
+#CleaningData
+province_list = []
+for element in province_series:
+    if element not in province_list:
+        province_list.append(element)
+
+######################
+# Page Title
+######################
+
+
+
+
+# Group multiple widgets:
+# placeholder  = st.empty()
+
+# def Login_Windows():
+#     tuple = ()
+
+#     placeholder.write("""
+    
+#     """)
+    
+#     clomun1,column2,column3 = placeholder.columns(3)
+   
+#     with column2.form('Login Windows'):
+#         username = st.text_input('Username')
+#         password = st.text_input('Password')
+#         st.form_submit_button('Login')
+#         st.info("Enter Correct Username and Password")
+#         tuple = (username, password)
+#         return tuple
+
+# user_tuple = Login_Windows()
+
+# def Login():
+#     bool = False
+#     for keys, values in users.items():
+#         if keys == user_tuple[0]:
+#             if values == user_tuple[1]:
+#                 bool = True
+#     return bool 
+
+# if Login() == True:
+    
+#     placeholder.empty()
+#     # success = st.success("Login Successfully")
+#     # time.sleep(1)
+#     # success.empty()
+
+#     if user_tuple[0] != "Root":
+#         st.markdown(hide_menu_style, unsafe_allow_hdal=True)
+
+selected = option_menu(
+    menu_title = "",
+    options = ["Home", "Download", "Contact"],
+    icons = ["house", "book", "envelope"],
+    menu_icon = "cast",
+    default_index = 0,
+    orientation = "horizontal",
+)
+
+#st.title(f"You Have Selected {selected} Window")
+
+
+image = Image.open("Earth2.jpg")
+
+st.write("""
+# Global Warming Statisc and Causes in Cuba
+
+This app visualize **statics** and **prediction** about weather in ***Cuba***!
+
+***
+""")
+st.image(image, use_column_width=True)
+
+
+if selected == "Home":
+
+    
+    with st.sidebar:
+
+        
+            #st.download_button('Download Statics', data = a)
+        selected = option_menu(
+            menu_title = "",
+            options = ["Articule", "Statics", "Prediccions","Crop Software"],
+            icons = ["file-earmark-bar-graph-fill","bar-chart-line-fill", "activity","window-dock"],
+            menu_icon = "image-alt ",
+            default_index = 0,
+            orientation = "vertical",
+        )
+
+        st.write("# ***Ela Virtual Assistant***")
+        if st.checkbox('Activate', disabled=True):
+            st.subheader('🤖 Ela is on ...')
+
+            #Start Listen             
+            listening = True
+            while listening == True:
+                data = va.listen()
+                listening = va.digital_assistant(data)
+        
+        st.header("⛅Real Time Weather Tracker")
+        lista = weather("Cuba" +" weather")
+        st.write(lista[0])
+        st.write(lista[1]+"h")
+        st.write(lista[2]) 
+        st.write(lista[3])
+
+
+    # #SideBar
+    # add_selectbox = st.sidebar.selectbox(
+    #     "What to Show",
+    #     ("Full Dashboard", "Data Vizualisation","Articule")
+    # )
+
+
+    if selected == "Articule":
+        
+        # with st.sidebar:
+        #     st.image("Sidebar.jpg")
+
+    
+        with st.sidebar:
+            with st.spinner("Loading..."):
+                time.sleep(2)
+            succ = st.success("✅Done!")
+            time.sleep(1)
+            succ.empty()
+        
+        col1, col2 = st.columns([2,2])
+
+        with col1:
+            st.header("Main Objective")
+            st.write(""" 
+                        ## ***Global Warming is a problem that affects the Planet Earth day by day.*** 
+                        Having control over how,
+                        as time passes, it increases; it is vitally important. 
+                        The main objective is to show the reality of the incidence 
+                        of this phenomenon in Cuba, as a result of the analysis of 
+                        information and predictions, with the use of a methodology 
+                        based on the learning of information and logic to study 
+                        the data through the development of a descriptive and 
+                        predictive analytical process. 
+                        It is possible to deploy a set of software where it will 
+                        be possible to visualize the result of the exploration 
+                        of data based fundamentally on descriptive statistics that 
+                        reflect the behavior of temperatures, demonstrating the potential
+                        of ***data science*** and ***artificial intelligence*** in the extraction 
+                        and processing of significant information.""")
+        
+            st.header("Direct impact of the effects of global warming on Cuba")
+            st.write("The Planet Earth is a system in a very complex state of equilibrium, when creating a destabilization either to natural or artificial causes the earth triggers unpredictable natural disasters to equalize and maintain its balance, it can be considered an action-reaction process. These natural disasters can be severe both for entire civilizations, and for the fauna and flora of the planet. An impressive fact of great interest is that according to the Europa Press Data Agency, Cuba is today the number 1 country in displaced due to natural disasters.")
+            st.image("desplazado.jpg")
+            
+            st.header("Impact of global warming on the agricultural industry")
+            st.write("Researchers and scientists have been warning for a long time that the increase in average temperature, the change in the amount and distribution of rainfall, the increase in the concentration of atmospheric carbon dioxide, are among the main effects of climate change on food production. As climate change increases, the areas for crops will decrease, unexpected changes will occur in the planting and harvest periods, an increase in pests and diseases will be evident and even some animal and vegetable species will become extinct. If the right decisions are not taken, a global food insecurity crisis can be triggered, being this even more acute in the countries with the least development of the agricultural industry.")
+            st.write("According to the UN Food and Agriculture Organization (FAO), climate change will decrease productivity, stability and agricultural incomes in several areas that have already experienced high levels of food insecurity. That is why it is vitally important to increase world agricultural production by more than 70 percent in the next four decades, the only way to meet the food needs of the entire population.")
+        with col2:
+
+            st.header("Climate Change Infography by: ")
+            st.write('***https://www.boldbusiness.com/***')
+            image = Image.open("Inphogra.png")
+            st.image(image, use_column_width=True)
+
+                
+            st.header("The situation of soils in Cuba")
+            st.write("At the Workshop Food Sovereignty and food plants for a better adaptation to climate change, held at the Friends of the Country Economic Society, Dr. Sergio Rodríguez Morales, director of the Tropical Viands Research Institute (INIVIT), precise:“In the country we have 76 percent of all agricultural areas with low productive soils, 14.9 percent are affected by salinity or modicity and 31 percent have low organic matter content” With the approach of Dr. Sergio Rodríguez Morales, it is reaffirmed that Cuba is not in a favorable position as far as fertile soils are concerned and if we add to this some of the environmental problems referred to above, the situation becomes critical.")
+            st.image("suelo.jpg")
+        
+    
+    if selected == "Statics":
+        ## 1. Display DataFrame
+        st.header("📊DataSets Main Statics")
+        describe = DT.Display_Statics()
+        if st.checkbox('Show Main Statics'):
+            colum1, colum2 = st.columns(2)
+            with colum1:
+                st.subheader('Main Statistics Temperature')
+                st.write(describe)
+            with colum2:
+                st.subheader("Main Statistics RainFall")
+                st.write(DT.Rainfall_Describe())
+            #st.download_button('Download Statics', data = a)
+
+        col1,col2,col3 = st.columns([3,6,3])
+        with col2:
+            st.header("Temperature Data Visualization")
+            st.image("temp.jpg")
+
+        # 1. Anual Temperature Maxime and Minime
+        colum1, colum2 = st.columns(2)
+        with colum1:
+            st.subheader("Maxime Average Per Year")
+            st.bar_chart(data=Anual_Max_df, x="Años", y="Maxima Media")
+            
+
+        with colum2:
+            st.subheader("Minime Average Per Year")
+            st.bar_chart(data=Anual_Min_df, x="Años", y="Minima Media")
+            
+
+        ## 2. Display Graphics
+
+        
+        years_to_filter = st.slider('years', 2006, 2020, 2007)  # min: 2006, max: 2020, default: 2007
+        max_df = da.FullAnnualAvgProvsegunAñoMax(years_to_filter)
+        min_df = da.FullAnnualAvgProvsegunAñoMin(years_to_filter)
+
+        st.subheader("Max Average Per State")
+        st.line_chart(data=max_df, x = "Provincias", y = "Maxima Media")
+        st.subheader("Min Average Per State")
+        st.line_chart(data=min_df, x = "Provincias", y = "Minima Media")
+        
+        #years_to_filter_rain = st.slider('years', 2006, 2020, 2007)  # min: 2006, max: 2020, default: 2007
+        #months = st.slider('months',"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")   
+
+        prov_to_filter = st.select_slider('Choose Province', province_list)
+        Anual_Per_Prov_Max= da.FullAnnualAvgAñosegunProvMax(prov_to_filter)
+        Anual_Per_Prov_Min= da.FullAnnualAvgAñosegunProvMin(prov_to_filter)
+        st.bar_chart(data=Anual_Per_Prov_Max,x = "Años", y="Maxima Media" )
+        
+        col1, col2, col3 = st.columns([3,12,3])
+        with col2:
+            st.subheader("Cross Relationship")
+            st.pyplot(DT.Pair_Plot())
+
+        col1,col2,col3 = st.columns([3,5,3])
+
+        with col2:
+            st.header("Rainfall Data Visualization")
+        st.image("Rain.jpg")
+        
+        st.subheader("🌧️Rainfall Mean Average 🌧️")
+        st.bar_chart(data = RainFall_df, y = "Mean", x = "Año")
+
+    if selected == "Prediccions":
+
+        st.header("Predictions using advanced Machine Learning Techniques")
+        st.image("ia2.jpg")
+        
+
+        Year_list_before = [x for x in range(1900, 2000, 10)]
+        Year_list_after = [x for x in range(2000, 2100, 10)]
+        before = [28.519229888916016, 28.667667388916016, 28.816104888916016, 28.96453857421875, 29.112979888916016, 29.26140594482422, 29.409847259521484, 29.558284759521484, 29.706727981567383, 29.85515594482422]
+        after = [30.00359344482422, 30.152034759521484, 30.30046844482422, 30.448909759521484, 30.59734344482422, 30.745779037475586, 30.894224166870117, 31.042648315429688, 31.191089630126953, 31.339527130126953]
+        df_before = pd.DataFrame({"Años": Year_list_before, "Temperatura Media": before})
+        df_after = pd.DataFrame({"Años": Year_list_after, "Temperatura Media": after})
+        
+        st.header("Predicciones de Temperaturas 2030-2070")
+        temp =  [31.194957733154297, 31.246030807495117, 31.297096252441406, 31.348163604736328, 31.39923095703125]
+        year = [2030, 2040, 2050, 2060, 2070]
+        df_pred = pd.DataFrame({"Años": year, "Temperatura Media": temp})
+
+        st.bar_chart(data = df_pred, x = "Años", y = "Temperatura Media" )
+
+        st.header("Incremento de las Temperaturas Durante el siglo XX y XXI")
+        
+        colum1, colum2, colum3 = st.columns([3,8,3])
+        with colum2:
+            st.write("## Promedio de Temperaturas 1900-2000")
+        st.bar_chart(x = "Años", y = "Temperatura Media", data = df_before)
+        
+        colum1, colum2, colum3 = st.columns([3,8,3])
+        with colum2:
+            st.write("## Promedio de Temperaturas 2000-2100")
+        st.bar_chart(x = "Años", y = "Temperatura Media", data = df_after)
+
+        st.subheader("***Existe una variacion de 2.8 Grados  Celsius desde 1900 hasta 2090***")
+            
+if selected == "Crop Software":
+    st.header("Soon")
+    st.subheader("Currenct State: In Development...")
+
+if selected == "Download":
+    #####################
+    # Input Text Box
+    #####################
+            
+            
+    def convert_df(df):
+
+        # IMPORTANT: Cache the conversion to prevent computation on every rerun
+
+        return df.to_csv().encode('utf-8')
+
+
+
+    #converting the sample dataframe
+
+    #Importing All Data Sets
+    temperature = pd.read_excel("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\TempFilter.xlsx")
+    temp = convert_df(temperature)
+
+    rainfall = da.makePrecipitationDf()
+    rainfall = convert_df(rainfall)
+
+    incremento = pd.read_csv("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\incremento.csv")
+    incremento = convert_df(incremento)
+
+    desplasado = pd.read_csv("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\desplazado.csv")
+    desplasado = convert_df(desplasado)
+
+    mediaMundial = pd.read_csv("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\mediamundial.csv")
+    mediaMundial = convert_df(mediaMundial)
+
+    st.header("Download the Main Data Sets")
+    st.header("Source: ")
+    st.subheader("http://www.onei.gob.cu/")
+    st.subheader("https://www.epdata.es/")
+    st.download_button( 
+        label="Download Temperature Data as CSV",
+        data=temp,
+        file_name='Temperaturas.csv',
+        mime='text/csv',
+    )
+
+    st.download_button( 
+        label="Download Rainfall Data as CSV",
+        data=rainfall,
+        file_name='Rainfall.csv',
+        mime='text/csv',
+    )
+
+    st.download_button( 
+        label="Download Temperature Increase Data as CSV",
+        data=incremento,
+        file_name='Increase.csv',
+        mime='text/csv',
+    ) 
+    
+    st.download_button( 
+        label="Download Global Mean Temperature Data as CSV",
+        data=mediaMundial,
+        file_name='Global_Mean.csv',
+        mime='text/csv',
+    )
+
+    st.download_button( 
+        label="Download Displaced people Data as CSV",
+        data=desplasado,
+        file_name='Displaced_people.csv',
+        mime='text/csv',
+    )
+
+
+    
+
+
+if selected == "Contact":
+
+    col1,col2,col3 = st.columns([3,6,3])
+    with col2:
+        st.header("👨‍💻Research and development team👨‍💻: ")
+        
+        st.header("")
+        
+        st.header("Jorge Felix Martinez Pazos")
+        st.subheader("Gmail: jorgito16040@gmail.com")
+        st.subheader("Institucion: ***Universidad de Ciencias Informaticas***")
+        st.subheader("Research Center: ***Center of computational mathematics***")
+        st.header("")
+        st.header("Frank Enrique James Hernandez")
+        st.subheader("Gmail: fjames07@gmail.com")
+        st.subheader("Institucion: ***Universidad de Ciencias Informaticas***")
+        st.subheader("Research Center: ***Department of Artificial Intelligence***")
