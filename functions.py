@@ -327,11 +327,9 @@ print(df)
 
 class RainfallManager():
     #Atributos
-    df = pandas.read_excel("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\RainfallFilter.xlsx")
+    df = pandas.read_excel("RainfallFilter.xlsx")
     
     @classmethod
     def Describe(cls):
         print(cls.df.describe())
 
-
-r = RainfallManager().Describe()
