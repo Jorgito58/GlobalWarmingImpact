@@ -1,7 +1,4 @@
 import streamlit as st
-import sys
-
-sys.path.insert(1, "D:\\Software Development\\PythonLearning\\Curso-Python\\7. Python_AI\\Data_IA_FullCourse\\deeplearning\\Lib\\site-packages\\streamlit_option_menu")
 
 from streamlit_option_menu import option_menu
 import pandas as pd
@@ -317,19 +314,19 @@ if selected == "Download":
     #converting the sample dataframe
 
     #Importing All Data Sets
-    temperature = pd.read_excel("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\TempFilter.xlsx")
+    temperature = pd.read_excel("TempFilter.xlsx")
     temp = convert_df(temperature)
 
     rainfall = da.makePrecipitationDf()
     rainfall = convert_df(rainfall)
 
-    incremento = pd.read_csv("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\incremento.csv")
+    incremento = pd.read_csv("incremento.csv")
     incremento = convert_df(incremento)
 
-    desplasado = pd.read_csv("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\desplazado.csv")
+    desplasado = pd.read_csv("desplazado.csv")
     desplasado = convert_df(desplasado)
 
-    mediaMundial = pd.read_csv("D:\\Software Development\\PythonLearning\\Curso-Python\\21.Proyecto_Cientifico_Calentamiento_Global\\Proyecto\\mediamundial.csv")
+    mediaMundial = pd.read_csv("mediamundial.csv")
     mediaMundial = convert_df(mediaMundial)
 
     st.header("Download the Main Data Sets")
