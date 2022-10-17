@@ -7,7 +7,7 @@ from streamlit_option_menu import option_menu
 import pandas as pd
 import altair as alt
 import time
-from Virtual_Assit import VirtualAssitent as va
+#from Virtual_Assit import VirtualAssitent as va
 from PIL import Image
 from Manager import DataAnalytics as da
 from Graphics import DataVizualisation as DT
@@ -111,11 +111,11 @@ if selected == "Home":
         if st.checkbox('Activate', disabled=True):
             st.subheader('🤖 Ela is on ...')
 
-            #Start Listen             
-            listening = True
-            while listening == True:
-                data = va.listen()
-                listening = va.digital_assistant(data)
+#             #Start Listen             
+#             listening = True
+#             while listening == True:
+#                 data = va.listen()
+#                 listening = va.digital_assistant(data)
         
         st.header("⛅Real Time Weather Tracker")
         lista = weather("Cuba" +" weather")
