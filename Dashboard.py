@@ -294,10 +294,10 @@ if selected == "Home":
         col1,col2,col3 = st.columns([2,10,2])
         with col2:
             st.subheader("***🌡️There is a variation of 2.8 Degrees Celsius from 1900 to 2090***")
-            
-if selected == "Crop Software":
-    st.header("Soon")
-    st.subheader("Currenct State: In Development...")
+
+        if selected == "Crop Software":
+            st.header("Soon")
+            st.subheader("Currenct State: In Development...")
 
 if selected == "Download":
     #####################
