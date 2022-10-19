@@ -22,10 +22,6 @@ from playsound import playsound
 from datetime import datetime as d
 from weather import weather
 
-#<iframe id='ep-chart-be6cd260-f423-46da-bd65-045189f7f87a' src='https://www.epdata.es/embed/be6cd260-f423-46da-bd65-045189f7f87a/450' style='width: 100%; min-height: 450px; overflow: hidden;' frameborder='0' scrolling='no' height='450'></iframe>
-#<iframe id='ep-chart-73a70e5f-022c-4db8-b5dc-e6fbfb2d031e' src='https://www.epdata.es/embed/73a70e5f-022c-4db8-b5dc-e6fbfb2d031e/450' style='width: 100%; min-height: 450px; overflow: hidden;' frameborder='0' scrolling='no' height='450'></iframe>
-#<iframe id='ep-chart-df13da5a-5e7b-4c1d-aa57-5d10bff4b1f4' src='https://www.epdata.es/embed/df13da5a-5e7b-4c1d-aa57-5d10bff4b1f4/450' style='width: 100%; min-height: 450px; overflow: hidden;' frameborder='0' scrolling='no' height='450'></iframe>
-
 
 #Streamlit Config Functions
 image = Image.open("Icon.jpg")
@@ -131,7 +127,7 @@ if selected == "Home":
     # )
 
 
-    if selected == "Articule":
+    if selected == "Article":
         
         # with st.sidebar:
         #     st.image("Sidebar.jpg")
@@ -185,7 +181,7 @@ if selected == "Home":
             st.image("suelo.jpg")
         
     
-    if selected == "Statics":
+    if selected == "Statistics":
         ## 1. Display DataFrame
         st.header("📊DataSets Main Statistics")
         describe = DT.Display_Statics()
@@ -254,7 +250,7 @@ if selected == "Home":
         st.subheader("🌧️Rainfall Mean Average 🌧️")
         st.bar_chart(data = RainFall_df, y = "Mean", x = "Año")
 
-    if selected == "Prediccions":
+    if selected == "Predict":
         
         st.header("")
         st.header("")
@@ -295,9 +291,9 @@ if selected == "Home":
         with col2:
             st.subheader("***🌡️There is a variation of 2.8 Degrees Celsius from 1900 to 2090***")
 
-        if selected == "Crop Software":
-            st.header("Soon")
-            st.subheader("Currenct State: In Development...")
+    if selected == "Crop Software":
+        st.header("Soon")
+        st.subheader("Currenct State: In Development...")
 
 if selected == "Download":
     #####################
