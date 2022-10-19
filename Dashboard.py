@@ -97,7 +97,7 @@ if selected == "Home":
             #st.download_button('Download Statics', data = a)
         selected = option_menu(
             menu_title = "",
-            options = ["Articule", "Statics", "Prediccions","Crop Software"],
+            options = ["Article", "Statistics", "Predict","Crop Software"],
             icons = ["file-earmark-bar-graph-fill","bar-chart-line-fill", "activity","window-dock"],
             menu_icon = "image-alt ",
             default_index = 0,
@@ -384,10 +384,10 @@ if selected == "Contact":
         
         st.header("Jorge Felix Martinez Pazos")
         st.subheader("Gmail: jorgito16040@gmail.com")
-        st.subheader("Institucion: ***Universidad de Ciencias Informaticas***")
+        st.subheader("Institution: ***Universidad de Ciencias Informaticas***")
         st.subheader("Research Center: ***Center of computational mathematics***")
         st.header("")
         st.header("Frank Enrique James Hernandez")
         st.subheader("Gmail: fjames07@gmail.com")
-        st.subheader("Institucion: ***Universidad de Ciencias Informaticas***")
+        st.subheader("Institution: ***Universidad de Ciencias Informaticas***")
         st.subheader("Research Center: ***Department of Artificial Intelligence***")
