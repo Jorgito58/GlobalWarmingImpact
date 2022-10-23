@@ -143,7 +143,7 @@ if selected == "Home":
         col1, col2 = st.columns([2,2])
 
         with col1:
-            st.header(" ")
+  
             st.write("""***Global Warming is a problem that affects the Planet Earth day by day.***
                         Having control over how,
                         as time passes, it increases; it is vitally important. 
@@ -169,7 +169,7 @@ if selected == "Home":
             st.write("According to the UN Food and Agriculture Organization (FAO), climate change will decrease productivity, stability and agricultural incomes in several areas that have already experienced high levels of food insecurity. That is why it is vitally important to increase world agricultural production by more than 70 percent in the next four decades, the only way to meet the food needs of the entire population.")
         with col2:
 
-            st.header("Climate Change Infography by: ")
+            st.header("***Climate Change Infography by:*** ")
             st.write('***https://www.boldbusiness.com/***')
             image = Image.open("Inphogra.png")
             st.image(image, use_column_width=True)
