@@ -75,7 +75,7 @@ selected = option_menu(
 image = Image.open("Earth2.jpg")
 
 st.write("""
-# Global Warming, Causes and Consequences. Study and analysis of climatological variables in Cuba.
+# ***Global Warming***, **Causes** and **Consequences**. Study and analysis of climatological variables in Cuba.
 
 This app visualize **statistics** and **predict** about climate change in ***Cuba***!
 
