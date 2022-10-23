@@ -75,7 +75,7 @@ selected = option_menu(
 image = Image.open("Earth2.jpg")
 
 st.write("""
-# ***Global Warming***, **Causes** and **Consequences**. Study and analysis of climatological variables in Cuba.
+# Global Warming, Causes and Consequences. Study and analysis of climatological variables in Cuba.
 
 This app visualize **statistics** and **predict** about climate change in ***Cuba***!
 
@@ -167,6 +167,7 @@ if selected == "Home":
             st.header("Impact of global warming on the agricultural industry")
             st.write("Researchers and scientists have been warning for a long time that the increase in average temperature, the change in the amount and distribution of rainfall, the increase in the concentration of atmospheric carbon dioxide, are among the main effects of climate change on food production. As climate change increases, the areas for crops will decrease, unexpected changes will occur in the planting and harvest periods, an increase in pests and diseases will be evident and even some animal and vegetable species will become extinct. If the right decisions are not taken, a global food insecurity crisis can be triggered, being this even more acute in the countries with the least development of the agricultural industry.")
             st.write("According to the UN Food and Agriculture Organization (FAO), climate change will decrease productivity, stability and agricultural incomes in several areas that have already experienced high levels of food insecurity. That is why it is vitally important to increase world agricultural production by more than 70 percent in the next four decades, the only way to meet the food needs of the entire population.")
+        
         with col2:
 
             st.header("***Climate Change Infography by:*** ")
