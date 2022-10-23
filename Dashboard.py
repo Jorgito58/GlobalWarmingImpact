@@ -143,9 +143,8 @@ if selected == "Home":
         col1, col2 = st.columns([2,2])
 
         with col1:
-            st.header("Main Objective")
+            st.header("***Global Warming is a problem that affects the Planet Earth day by day.*** ")
             st.write(""" 
-                        ## ***Global Warming is a problem that affects the Planet Earth day by day.*** 
                         Having control over how,
                         as time passes, it increases; it is vitally important. 
                         The main objective is to show the reality of the incidence 
